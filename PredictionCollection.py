@@ -41,3 +41,49 @@ class PredictionCollection(ISavable):
 
     def get_predicted_labels(self):
         return np.array([p.get_predicted_label() for p in self.get_predictions()])
+    
+    
+    def __get_tp_num(self):
+        label_trues = (self.get_labels() == 1)
+        predicted_trues = (self.get_predicted_labels() == 1)
+        return np.count_nonzero(np.logical_and(label_trues, predicted_trues))
+    
+    
+    def __get_fp_num(self):
+        label_falses = (self.get_labels() == 0)
+        predicted_trues = (self.get_predicted_labels() == 1)
+        return np.count_nonzero(np.logical_and(label_falses, predicted_trues))
+    
+    
+    def __get_tn_num(self):
+        label_trues = (self.get_labels() == 0)
+        predicted_falses = (self.get_predicted_labels() == 0)
+        return np.count_nonzero(np.logical_and(label_trues, predicted_falses))
+    
+    
+    def __get_fn_num(self):
+        label_trues = (self.get_labels() == 1)
+        predicted_falses = (self.get_predicted_labels() == 0)
+        return np.count_nonzero(np.logical_and(label_trues, predicted_falses))
+    
+    
+    def get_accuracy(self):
+        tp = self.__get_tp_num()
+        fp = self.__get_fp_num()
+        tn = self.__get_tn_num()
+        fn = self.__get_fn_num()
+        
+        return float(tp + tn) / (tp + fp + tn + fn)
+    
+    
+    """
+    @summary: calcrate Matthew Correlation Coefficient(MCC)
+    """
+    def get_mcc(self):
+        tp = self.__get_tp_num()
+        fp = self.__get_fp_num()
+        tn = self.__get_tn_num()
+        fn = self.__get_fn_num()
+        
+        return float(tp * tn - fp * fn) / np.sqrt((tp + fp)*(tp + fn)*(tn + fp)*(tn + fn))
+        
