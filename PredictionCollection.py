@@ -25,6 +25,10 @@ class PredictionCollection(ISavable):
     def save(self, filepath):
         with open(filepath, "wb") as f:
             cPickle.dump(self, f)
+            
+            
+    def get_ids(self):
+        return np.array([p.get_record().get_id() for p in self.get_predictions()])
 
 
     def get_input_matrix(self):
