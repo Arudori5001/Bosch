@@ -1,5 +1,8 @@
 #coding:utf-8
 
+import cPickle
+import numpy as np
+
 from ISavable import ISavable
 
 class PredictionCollection(ISavable):
@@ -22,3 +25,15 @@ class PredictionCollection(ISavable):
     def save(self, filepath):
         with open(filepath, "wb") as f:
             cPickle.dump(self, f)
+
+
+    def get_input_matrix(self):
+        return np.array([p.get_record().get_input_vector() for p in self.get_predictions()])
+
+
+    def get_labels(self):
+        return np.array([p.get_record().get_label() for p in self.get_predictions()])
+
+
+    def get_predicted_labels(self):
+        return np.array([p.get_predicted_label() for p in self.get_predictions()])
