@@ -25,9 +25,10 @@ class SvmModel(Model):
         
         
     def predict(self, dataset):
+        records = dataset.get_records()
         input_matrix = dataset.get_input_matrix()
         predicted_labels = self.__get_classifier().predict(input_matrix)
-        predictions = np.array([Prediction(record=r,predicted_label=l for r,l in zip(input_matrix, predicted_labels))])
+        predictions = np.array([Prediction(record=r,predicted_label=l) for r,l in zip(records, predicted_labels)])
         prediction_collection = PredictionCollection(predictions)
         return prediction_collection
     
