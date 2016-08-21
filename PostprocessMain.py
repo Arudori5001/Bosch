@@ -9,8 +9,7 @@ from PostProcessor import PostProcessor
 @click.argument("prediction_file")
 @click.argument("submission_file")
 def main(prediction_file, submission_file):
-    prediction_collection = PredictionCollection()
-    prediction_collection.load(prediction_file)
+    prediction_collection = PredictionCollection.load(prediction_file)
     postprocessor = PostProcessor()
     postprocessor.write_submission_file(prediction_collection, submission_file)
 
