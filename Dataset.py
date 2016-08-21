@@ -1,6 +1,7 @@
 #coding:utf-8
 
 import cPickle
+import numpy as np
 
 from ISavable import ISavable
 
@@ -11,6 +12,7 @@ class Dataset(ISavable):
     
     def get_records(self):
         return self.__records
+    
     
     @staticmethod
     def load(filepath):
@@ -23,3 +25,11 @@ class Dataset(ISavable):
     def save(self, filepath):
         with open(filepath, "wb") as f:
             cPickle.dump(self, f)
+
+
+    def get_input_matrix(self):
+        return np.array([r.get_input_vector() for r in self.get_records()])
+
+    
+    def get_labels(self):
+        return np.array([r.get_label() for r in self.get_records()])

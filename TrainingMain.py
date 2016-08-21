@@ -3,7 +3,7 @@
 import click
 
 from Dataset import Dataset
-from NeuralNetModel import NeuralNetModel
+from SvmModel import SvmModel
 
 @click.command()
 @click.argument("train_dataset_file")
@@ -12,7 +12,7 @@ from NeuralNetModel import NeuralNetModel
 def main(train_dataset_file, valid_dataset_file, model_file):
     train_dataset = Dataset.load(train_dataset_file)
     valid_dataset = Dataset.load(valid_dataset_file)
-    model = NeuralNetModel()
+    model = SvmModel()
     model.learn(train_dataset, valid_dataset)
     model.save(model_file)
     

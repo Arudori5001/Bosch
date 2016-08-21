@@ -1,9 +1,9 @@
 #coding:utf-8
 
 import abc
+import cPickle
 
 from ISavable import ISavable
-from _pyio import __metaclass__
 
 
 class Model(ISavable):
@@ -24,9 +24,14 @@ class Model(ISavable):
         raise NotImplementedError()
     
     
-    def load(self, filename):
-        raise NotImplementedError()
+    @staticmethod
+    def load(filepath):
+        obj = None
+        with open(filepath, "rb") as f:
+            obj = cPickle.load(f)
+        return obj
     
     
-    def save(self, filename):
-        raise NotImplementedError()
+    def save(self, filepath):
+        with open(filepath, "wb") as f:
+            cPickle.dump(self, f)
