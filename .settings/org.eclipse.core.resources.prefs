@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding/Configuration.py=utf-8
+encoding/Dataset.py=utf-8
+encoding/Model.py=utf-8
+encoding/NeuralNetModel.py=utf-8
+encoding/PostProcessor.py=utf-8
+encoding/PostprocessMain.py=utf-8
+encoding/Prediction.py=utf-8
+encoding/PredictionCollection.py=utf-8
+encoding/PreprocessMain.py=utf-8
+encoding/Preprocessor.py=utf-8
+encoding/RawDataset.py=utf-8
+encoding/RawRecord.py=utf-8
+encoding/Record.py=utf-8
+encoding/TrainingMain.py=utf-8
