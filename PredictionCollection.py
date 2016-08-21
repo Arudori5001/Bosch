@@ -11,9 +11,14 @@ class PredictionCollection(ISavable):
         return self.__predictions
     
     
-    def save(self, filename):
-        raise NotImplementedError()
+    @staticmethod
+    def load(filepath):
+        obj = None
+        with open(filepath, "rb") as f:
+            obj = cPickle.load(f)
+        return obj
     
     
-    def load(self, filename):
-        raise NotImplementedError()
+    def save(self, filepath):
+        with open(filepath, "wb") as f:
+            cPickle.dump(self, f)
