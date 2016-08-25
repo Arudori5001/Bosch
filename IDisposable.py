@@ -5,6 +5,6 @@ import abc
 class IDisposable:
     __metaclass__ = abc.ABCMeta
     
-    @staticmethod
-    def dispose():
+    @abc.abstractmethod
+    def dispose(self):
         raise NotImplementedError()
