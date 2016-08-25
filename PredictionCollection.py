@@ -28,15 +28,11 @@ class PredictionCollection(ISavable):
             
             
     def get_ids(self):
-        return np.array([p.get_record().get_id() for p in self.get_predictions()])
+        return np.array([p.get_id() for p in self.get_predictions()])
 
 
-    def get_input_matrix(self):
-        return np.array([p.get_record().get_input_vector() for p in self.get_predictions()])
-
-
-    def get_labels(self):
-        return np.array([p.get_record().get_label() for p in self.get_predictions()])
+    def get_actual_labels(self):
+        return np.array([p.get_actual_label() for p in self.get_predictions()])
 
 
     def get_predicted_labels(self):
@@ -44,27 +40,27 @@ class PredictionCollection(ISavable):
     
     
     def __get_tp_num(self):
-        label_trues = (self.get_labels() == 1)
+        actual_trues = (self.get_actual_labels() == 1)
         predicted_trues = (self.get_predicted_labels() == 1)
-        return np.count_nonzero(np.logical_and(label_trues, predicted_trues))
+        return np.count_nonzero(np.logical_and(actual_trues, predicted_trues))
     
     
     def __get_fp_num(self):
-        label_falses = (self.get_labels() == 0)
+        actual_falses = (self.get_actual_labels() == 0)
         predicted_trues = (self.get_predicted_labels() == 1)
-        return np.count_nonzero(np.logical_and(label_falses, predicted_trues))
+        return np.count_nonzero(np.logical_and(actual_falses, predicted_trues))
     
     
     def __get_tn_num(self):
-        label_trues = (self.get_labels() == 0)
+        actual_falses = (self.get_actual_labels() == 0)
         predicted_falses = (self.get_predicted_labels() == 0)
-        return np.count_nonzero(np.logical_and(label_trues, predicted_falses))
+        return np.count_nonzero(np.logical_and(actual_falses, predicted_falses))
     
     
     def __get_fn_num(self):
-        label_trues = (self.get_labels() == 1)
+        actual_trues = (self.get_actual_labels() == 1)
         predicted_falses = (self.get_predicted_labels() == 0)
-        return np.count_nonzero(np.logical_and(label_trues, predicted_falses))
+        return np.count_nonzero(np.logical_and(actual_trues, predicted_falses))
     
     
     def get_accuracy(self):
