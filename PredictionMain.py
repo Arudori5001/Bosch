@@ -6,11 +6,18 @@ from Dataset import Dataset
 from Model import Model
 
 @click.command()
-@click.argument("dataset_file")
+@click.argument("table_name")
+@click.argument("is_test",type=bool)
 @click.argument("model_file")
 @click.argument("prediction_file")
-def main(dataset_file,model_file,prediction_file):
-    dataset = Dataset.load(dataset_file)
+def main(table_name,is_test,model_file,prediction_file):
+    host = "localhost"
+    db_name = "bosch"
+    username = "root"
+    passward = ""
+    chunksize = 10 ** 4
+    
+    dataset = Dataset(is_test=is_test,host=host,db_name=db_name,username=username,passward=passward,table_name=table_name,chunksize=chunksize)
     model = Model.load(model_file)
     
     prediction_collection = model.predict(dataset)
