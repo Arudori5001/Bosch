@@ -44,5 +44,5 @@ python EvaluationMain.py PREDICTION_FILE
 ```shell
 python PostprocessMain.py PREDICTION_FILE SUBMISSION_FILE
 ```
-`PREDICTION_FILE` : the file path of the prediction you want to make submission file
+`PREDICTION_FILE` : the file path of the prediction you want to make submission file  
 `SUBSSION_FILE` : the output file path for submission
