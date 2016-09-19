@@ -1,6 +1,7 @@
 #coding:utf-8
 
 import click
+import configparser
 
 from Configuration import Configuration
 from DatabaseManager import DatabaseManager
@@ -8,10 +9,13 @@ from Preprocessor import Preprocessor
 
 @click.command()
 def main():
-    host = "localhost"
-    db_name = "bosch"
-    username = "root"
-    passward = ""
+    setting_parser = configparser.ConfigParser()
+    setting_parser.read("setting.ini")
+    host = setting_parser.get("database", "host_name")
+    db_name = setting_parser.get("database", "db_name")
+    username = setting_parser.get("database", "user_name")
+    passward = setting_parser.get("database", "password")
+
     config = Configuration(
         train_num=20,
         valid_num=20,
