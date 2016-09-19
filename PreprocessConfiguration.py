@@ -1,6 +1,6 @@
 #coding:utf-8
 
-class Configuration:
+class PreprocessConfiguration:
     def __init__(self,
                  train_num, valid_num, test_num,
                  raw_train_table_name,raw_test_table_name,
@@ -24,7 +24,7 @@ class Configuration:
     
     
     def get_test_num(self):
-        return self.__test_num        return self.__test_num
+        return self.__test_num
 
 
     def get_raw_train_table_name(self):

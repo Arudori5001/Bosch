@@ -3,7 +3,7 @@
 import click
 import configparser
 
-from Configuration import Configuration
+from PreprocessConfiguration import PreprocessConfiguration
 from DatabaseManager import DatabaseManager
 from Preprocessor import Preprocessor
 
@@ -16,9 +16,9 @@ def main():
     username = setting_parser.get("database", "user_name")
     passward = setting_parser.get("database", "password")
 
-    config = Configuration(
-        train_num=20,
-        valid_num=20,
+    config = PreprocessConfiguration(
+        train_num=2000,
+        valid_num=2000,
         test_num=1e5,
         raw_train_table_name="train_numeric", raw_test_table_name="test_numeric",
         processed_train_table_name="valid_processed", processed_valid_table_name="valid_processed", processed_test_table_name="test_processed"
