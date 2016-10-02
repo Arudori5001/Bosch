@@ -16,8 +16,7 @@ class Preprocessor:
         config = manager.get_configuration()
 
         manager.truncate(config.get_processed_train_table_name())
-        manager.truncate(config.get_processed_valid_table_name())
         manager.truncate(config.get_processed_test_table_name())
 
-        manager.pick_up_randomly_from_raw_train()
+        manager.copy(config.get_raw_train_table_name(), config.get_processed_train_table_name())
         manager.copy(config.get_raw_test_table_name(), config.get_processed_test_table_name())
