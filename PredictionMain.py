@@ -2,6 +2,8 @@
 
 import click
 import configparser
+import logging
+import logging.config
 
 from Model import Model
 from LabeledDataset import LabeledDataset
@@ -14,6 +16,9 @@ from UnlabeledDataset import UnlabeledDataset
 @click.argument("model_file")
 @click.argument("prediction_file")
 def main(table_name,id_table_name,is_test,model_file,prediction_file):
+    logging.config.fileConfig("LogSetting.ini")
+    logger = logging.getLogger(__name__)
+    logger.info("start : " + __file__)
 
     setting_parser = configparser.ConfigParser()
     setting_parser.read("setting.ini")
@@ -35,6 +40,7 @@ def main(table_name,id_table_name,is_test,model_file,prediction_file):
     prediction_collection = model.predict(dataset)
     prediction_collection.save(prediction_file)
 
+    logger.info("end : " + __file__)
     
 
 if __name__ == "__main__":
