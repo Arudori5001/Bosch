@@ -27,7 +27,7 @@ def main():
     manager = DatabaseManager(config, host=host, db_name=db_name, username=username, passward=passward)
     preprocessor = Preprocessor(manager)
     preprocessor.preprocess()
-
+    
 
 if __name__ == "__main__":
     main()
