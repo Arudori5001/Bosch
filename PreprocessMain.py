@@ -15,19 +15,23 @@ def main():
     db_name = setting_parser.get("database", "db_name")
     username = setting_parser.get("database", "user_name")
     passward = setting_parser.get("database", "password")
+    raw_train_table_name = setting_parser.get("database", "raw_train_table")
+    raw_test_table_name = setting_parser.get("database", "raw_test_table")
+    processed_train_table_name = setting_parser.get("database", "processed_train_table")
+    processed_test_table_name = setting_parser.get("database", "processed_test_table")
+    processed_train_id_table_name = setting_parser.get("database", "processed_train_id_table")
+    processed_valid_id_table_name = setting_parser.get("database", "processed_valid_id_table")
 
     config = PreprocessConfiguration(
-        train_num=2000,
-        valid_num=2000,
-        test_num=1e5,
-        raw_train_table_name="train_numeric", raw_test_table_name="test_numeric",
-        processed_train_table_name="valid_processed", processed_valid_table_name="valid_processed", processed_test_table_name="test_processed"
+        raw_train_table_name=raw_train_table_name, raw_test_table_name=raw_test_table_name,
+        processed_train_table_name=processed_train_table_name, processed_test_table_name=processed_test_table_name,
+        processed_train_id_table_name=processed_train_id_table_name, processed_valid_id_table_name=processed_valid_id_table_name
     )
 
     manager = DatabaseManager(config, host=host, db_name=db_name, username=username, passward=passward)
     preprocessor = Preprocessor(manager)
     preprocessor.preprocess()
-    
+
 
 if __name__ == "__main__":
     main()
