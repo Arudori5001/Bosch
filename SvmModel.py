@@ -1,6 +1,5 @@
-#codinf:utf-8
+#coding:utf-8
 
-import numpy as np
 from sklearn import svm
 
 from Model import Model
