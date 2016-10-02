@@ -2,10 +2,10 @@
 
 import numpy as np
 
-from AbstractDataset import AbstarctDataset
+from MysqlDataset import MysqlDataset
 from Record import Record
 
-class LabeledDataset(AbstarctDataset):
+class LabeledMysqlDataset(MysqlDataset):
 
     def __init__(self, host, db_name, username, passward, table_name, id_table_name, chunksize):
         super.__init__(host, db_name, username, passward, table_name, chunksize)
@@ -29,7 +29,7 @@ class LabeledDataset(AbstarctDataset):
         return result
 
 
-    def __get_records(self, offset, num):
+    def __get_records_with_range(self, offset, num):
         table = self.__get_table(offset, num)
         records = np.array([Record(id=row[0],input_vector=row[1:-1],label=row[-1]) for row in table])
         return records

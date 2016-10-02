@@ -5,7 +5,7 @@ import configparser
 import logging
 import logging.config
 
-from LabeledDataset import LabeledDataset
+from LabeledMysqlDataset import LabeledMysqlDataset
 from SvmModel import SvmModel
 
 @click.command()
@@ -28,8 +28,8 @@ def main(model_file):
 
     chunksize = 10 ** 6
     
-    train_dataset = LabeledDataset(host=host,db_name=db_name,username=username,passward=passward,table_name=train_table_name,id_table_name=train_id_table_name,chunksize=chunksize)
-    valid_dataset = LabeledDataset(host=host,db_name=db_name,username=username,passward=passward,table_name=train_table_name,id_table_name=valid_id_table_name,chunksize=chunksize)
+    train_dataset = LabeledMysqlDataset(host=host, db_name=db_name, username=username, passward=passward, table_name=train_table_name, id_table_name=train_id_table_name, chunksize=chunksize)
+    valid_dataset = LabeledMysqlDataset(host=host, db_name=db_name, username=username, passward=passward, table_name=train_table_name, id_table_name=valid_id_table_name, chunksize=chunksize)
     model = SvmModel()
     model.learn(train_dataset, valid_dataset)
     model.save(model_file)

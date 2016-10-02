@@ -6,8 +6,8 @@ import logging
 import logging.config
 
 from Model import Model
-from LabeledDataset import LabeledDataset
-from UnlabeledDataset import UnlabeledDataset
+from LabeledMysqlDataset import LabeledMysqlDataset
+from UnlabeledMysqlDataset import UnlabeledMysqlDataset
 
 @click.command()
 @click.argument("table_name")
@@ -31,9 +31,9 @@ def main(table_name,id_table_name,is_test,model_file,prediction_file):
 
     dataset = None
     if is_test:
-        dataset = UnlabeledDataset(host=host,db_name=db_name,username=username,passward=passward,table_name=table_name,chunksize=chunksize)
+        dataset = UnlabeledMysqlDataset(host=host, db_name=db_name, username=username, passward=passward, table_name=table_name, chunksize=chunksize)
     else:
-        dataset = LabeledDataset(host=host,db_name=db_name,username=username,passward=passward,table_name=table_name,id_table_name=id_table_name,chunksize=chunksize)
+        dataset = LabeledMysqlDataset(host=host, db_name=db_name, username=username, passward=passward, table_name=table_name, id_table_name=id_table_name, chunksize=chunksize)
 
     model = Model.load(model_file)
     

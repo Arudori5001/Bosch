@@ -2,10 +2,10 @@
 
 import numpy as np
 
-from AbstractDataset import AbstarctDataset
+from MysqlDataset import MysqlDataset
 from Record import Record
 
-class UnlabeledDataset(AbstarctDataset):
+class UnlabeledMysqlDataset(MysqlDataset):
 
     def __init__(self, host, db_name, username, passward, table_name, chunksize):
         super.__init__(host, db_name, username, passward, table_name, chunksize)
@@ -21,7 +21,7 @@ class UnlabeledDataset(AbstarctDataset):
         return result
 
 
-    def __get_records(self, offset, num):
+    def __get_records_with_range(self, offset, num):
         table = self.__get_table(offset, num)
         records = np.array([Record(id=row[0],input_vector=row[1:],label=None) for row in table])
         return records
