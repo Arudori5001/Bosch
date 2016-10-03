@@ -29,11 +29,13 @@ def main(train_num,valid_num):
     processed_test_table_name = setting_parser.get("database", "processed_test_table")
     processed_train_id_table_name = setting_parser.get("database", "processed_train_id_table")
     processed_valid_id_table_name = setting_parser.get("database", "processed_valid_id_table")
+    label_relation_table_name = setting_parser.get("database", "label_relation_table")
 
     config = PreprocessConfiguration(
         raw_train_table_name=raw_train_table_name, raw_test_table_name=raw_test_table_name,
         processed_train_table_name=processed_train_table_name, processed_test_table_name=processed_test_table_name,
-        processed_train_id_table_name=processed_train_id_table_name, processed_valid_id_table_name=processed_valid_id_table_name
+        processed_train_id_table_name=processed_train_id_table_name, processed_valid_id_table_name=processed_valid_id_table_name,
+        label_relation_table_name=label_relation_table_name
     )
 
     manager = DatabaseManager(config, host=host, db_name=db_name, username=username, passward=passward)
