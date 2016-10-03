@@ -35,9 +35,10 @@ python TrainingMain.py MODEL_FILE
 
 ## Make prediction
 ```shell
-python PredictionMain.py TABLE_NAME IS_TEST MODEL_FILE PREDICTION_FILE
+python PredictionMain.py TABLE_NAME ID_TABLE_NAME IS_TEST MODEL_FILE PREDICTION_FILE
 ```
 `TABLE_NAME` : the name of MySQL table you want to make prediction  
+`ID_TABLE_NAME` : the name of table that has ids used for prediction  
 `IS_TEST` : the boolean value (True/False) representing whether or not the table is the for the test data  
 `MODEL_FILE` : the model file path you want to use  
 `PREDICTION_FILE` : the output file path for prediction  
