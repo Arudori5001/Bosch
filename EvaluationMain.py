@@ -8,10 +8,7 @@ from PredictionCollection import PredictionCollection
 @click.argument("prediction_file")
 def main(prediction_file):
     prediction_collection = PredictionCollection.load(prediction_file)
-    acc = prediction_collection.get_accuracy()
-    mcc = prediction_collection.get_mcc()
-    print("acc : {}".format(acc))
-    print("mcc : {}".format(mcc))
+    print("confision matrix:\n{}".format(prediction_collection.get_confusion_matrix()))
     
 
 if __name__ == "__main__":
