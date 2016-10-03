@@ -19,6 +19,14 @@ Templete for machine learning
 python PreprocessMain.py
 ```
 
+## Sampling
+```shell
+python SamplingMain.py TRAIN_NUM VALID_NUM
+```
+
+`TRAIN_NUM` : the number of train records  
+`VALID_NUM` : the number of valid records
+
 ## Training
 ```shell
 python TrainingMain.py MODEL_FILE
