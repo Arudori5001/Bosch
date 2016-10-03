@@ -4,11 +4,11 @@ import abc
 import numpy as np
 import MySQLdb
 
-from AbstractDataset import AbstarctDataset
+from BaseDataset import BaseDataset
 from IDisposable import IDisposable
 
 
-class MysqlDataset(AbstarctDataset,IDisposable):
+class MysqlDataset(BaseDataset, IDisposable):
     __metaclass__ = abc.ABCMeta
 
     def __init__(self, host, db_name, username, passward, table_name, chunksize):

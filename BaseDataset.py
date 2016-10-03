@@ -4,7 +4,7 @@ import abc
 import numpy as np
 
 
-class AbstarctDataset:
+class BaseDataset:
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
