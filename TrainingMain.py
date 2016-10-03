@@ -6,7 +6,7 @@ import logging
 import logging.config
 
 from LabeledMysqlDataset import LabeledMysqlDataset
-from SvmModel import SvmModel
+from RandomForestModel import RandomForestModel
 
 @click.command()
 @click.argument("model_file")
@@ -25,12 +25,11 @@ def main(model_file):
     train_id_table_name = setting_parser.get("database", "processed_train_id_table")
     valid_id_table_name = setting_parser.get("database", "processed_valid_id_table")
 
-
-    chunksize = 10 ** 6
+    chunksize = 1000
     
     train_dataset = LabeledMysqlDataset(host=host, db_name=db_name, username=username, passward=passward, table_name=train_table_name, id_table_name=train_id_table_name, chunksize=chunksize)
     valid_dataset = LabeledMysqlDataset(host=host, db_name=db_name, username=username, passward=passward, table_name=train_table_name, id_table_name=valid_id_table_name, chunksize=chunksize)
-    model = SvmModel()
+    model = RandomForestModel()
     model.learn(train_dataset, valid_dataset)
     model.save(model_file)
     train_dataset.dispose()
