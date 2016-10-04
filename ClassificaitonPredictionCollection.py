@@ -1,5 +1,6 @@
 # coding:utf-8
 
+import numpy as np
 from sklearn.metrics import confusion_matrix
 
 from PredictionCollection import PredictionCollection
@@ -20,3 +21,10 @@ class ClassificationPredictionCollection(PredictionCollection):
         seen = set()
         label_kinds = sorted([x for x in self.get_actual_labels() if x not in seen and not seen.add(x)])
         return label_kinds
+
+    def get_accuracy(self):
+        conf_mat = self.get_confusion_matrix()
+        corrects = np.sum([conf_mat[i,i] for i in range(len(conf_mat))])
+        whole = np.sum(conf_mat)
+
+        return float(corrects) / whole

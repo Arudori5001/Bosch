@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 from Model import Model
 from Prediction import Prediction
-from PredictionCollection import PredictionCollection
+from ClassificaitonPredictionCollection import ClassificationPredictionCollection
 
 
 class RandomForestModel(Model):
@@ -32,8 +32,8 @@ class RandomForestModel(Model):
                 prediction = Prediction(id=id, actual_label=a, predicted_label=p)
                 predictions.append(prediction)
 
-        prediction_collection = PredictionCollection(predictions)
-        return prediction_collection
+        collection = ClassificationPredictionCollection(predictions)
+        return collection
 
     def valid(self, dataset):
         raise NotImplementedError()
