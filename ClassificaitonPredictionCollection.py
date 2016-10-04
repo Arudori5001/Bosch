@@ -28,3 +28,6 @@ class ClassificationPredictionCollection(PredictionCollection):
         whole = np.sum(conf_mat)
 
         return float(corrects) / whole
+
+    def get_scores(self):
+        return np.array([p.get_score() for p in self.get_predictions()])

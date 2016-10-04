@@ -3,7 +3,7 @@
 from sklearn import svm
 
 from Model import Model
-from Prediction import Prediction
+from ClassificationPrediction import ClassificationPrediction
 from BinaryPredictionCollection import BinaryPredictionCollection
 
 
@@ -30,9 +30,10 @@ class SvmModel(Model):
             input_matrix = dataset.get_input_matrix(chunk)
             actual_labels = dataset.get_labels(chunk)
             predicted_labels = self.__get_classifier().predict(input_matrix)
+            scores = self.__get_classifier().decision_function(input_matrix)
             
-            for i,(id,a,p) in enumerate(zip(ids,actual_labels,predicted_labels)):
-                prediction = Prediction(id=id,actual_label=a,predicted_label=p)
+            for i, (id, a, p, s) in enumerate(zip(ids, actual_labels, predicted_labels, scores)):
+                prediction = ClassificationPrediction(id=id, actual_label=a, predicted_label=p, score=s)
                 predictions.append(prediction)
             
         prediction_collection = BinaryPredictionCollection(predictions)

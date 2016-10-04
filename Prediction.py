@@ -1,12 +1,12 @@
 #coding:utf-8
 
-class Prediction:
+class Prediction(object):
     def __init__(self, id, actual_label, predicted_label):
         self.__id = id
         self.__actual_label = actual_label
         self.__predicted_label = predicted_label
-    
-    
+
+
     def get_id(self):
         return self.__id
     
