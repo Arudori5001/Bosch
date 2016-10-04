@@ -2,9 +2,9 @@
 
 import numpy as np
 
-from PredictionCollection import PredictionCollection
+from ClassificaitonPredictionCollection import ClassificationPredictionCollection
 
-class BinaryPredictionCollection(PredictionCollection):
+class BinaryPredictionCollection(ClassificationPredictionCollection):
 
     def __init__(self,predictions):
         super(BinaryPredictionCollection,self).__init__(predictions)
